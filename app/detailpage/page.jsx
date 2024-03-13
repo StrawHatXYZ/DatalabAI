@@ -72,7 +72,7 @@ const Detail = () => {
 
   return (
     <div className="mt-16 py-4 z-40">
-      <Detail_header  bounty={bounty}/>
+      <DetailHeader  bounty={bounty}/>
       <div className="absolute mt-64 flex flex-row ">
       <div className=" p-4 ml-20 w-2/3 h-fit rounded border-2 border-gray-100">
           <div className="flex">

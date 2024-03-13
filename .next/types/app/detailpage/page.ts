@@ -1,4 +1,4 @@
-// File: /Users/captain_abhijeeth/Desktop/DatalabAI/app/detailpage/page.jsx
+// File: /Users/kishore/Desktop/DatalabAI/app/detailpage/page.jsx
 import * as entry from '../../../../app/detailpage/page.js'
 import type { ResolvingMetadata } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

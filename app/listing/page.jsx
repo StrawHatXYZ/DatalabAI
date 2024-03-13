@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+import React, { useState, useEffect } from "react";
+import dynamic from 'next/dynamic';
 import { addBounty } from "../firebase";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 const Listing = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -38,6 +39,10 @@ const Listing = () => {
     ],
   };
 
+  useEffect(() => {
+    setIsModalVisible(true);
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     addBounty(formData)
@@ -49,7 +54,7 @@ const Listing = () => {
       });
     setFormData({
       title: "",
-      pointOfContact: "",
+      contact: "",
       deadline: "",
       description: "",
       cryptocurrency: "eth",
@@ -84,21 +89,15 @@ const Listing = () => {
       .catch((error) => {
         toast.error("Error adding bounty: " + error.message);
       });
-};
-
+  };
 
   return (
-    <div className="fixed top-0 left-0 right-0 overflow-y-auto bg-gray-200 mt-12 py-4  flex flex-col items-center justify-center h-screen
-    ">
+    <div className="fixed top-0 left-0 right-0 overflow-y-auto bg-gray-200 mt-12 py-4  flex flex-col items-center justify-center h-screen">
       <span className="mt-72 text-2xl text-slate-500">Bounty Listing Form </span>
       <form className="w-3/5 mt-8 mb-36 bg-white rounded-lg shadow  p-8 ">
         {formFields.map((field, index) => (
           <div key={index} className="flex flex-col mt-4">
-            <label
-              className="text-base font-medium text-gray-900"
-            >
-              {field.label} :
-            </label>
+            <label className="text-base font-medium text-gray-900">{field.label} :</label>
             {field.type === "select" ? (
               <select
                 name={field.label}
@@ -107,36 +106,33 @@ const Listing = () => {
                 required={field.required}
                 value={formData[field.name.toLowerCase()]}
               >
-                <option value="" disabled hidden>
-                  Select {field.label}
-                </option>
+                <option value="" disabled hidden>Select {field.label}</option>
                 {field.options.map((option, optionIndex) => (
-                  <option key={optionIndex} value={option}>
-                    {option}
-                  </option>
+                  <option key={optionIndex} value={option}>{option}</option>
                 ))}
               </select>
             ) : field.type === "text-editor" ? (
-              <ReactQuill
-              value={formData.description}
-              className="mt-2"
-              onChange={(value) => setFormData((prevData) => ({ ...prevData, description: value }))}
-              formats={[
-                "header",
-                "font",
-                "size",
-                "bold",
-                "italic",
-                "underline",
-                "strike",
-                "blockquote",
-                "list",
-                "bullet",
-                "indent",
-                "link",
-                "image",
-              ]}
-            />
+              <div className="mt-2">
+                {typeof window !== 'undefined' && <ReactQuill
+                  value={formData.description}
+                  onChange={(value) => setFormData((prevData) => ({ ...prevData, description: value }))}
+                  formats={[
+                    "header",
+                    "font",
+                    "size",
+                    "bold",
+                    "italic",
+                    "underline",
+                    "strike",
+                    "blockquote",
+                    "list",
+                    "bullet",
+                    "indent",
+                    "link",
+                    "image",
+                  ]}
+                />}
+              </div>
             ) : (
               <input
                 type={field.type}
@@ -171,8 +167,8 @@ const Listing = () => {
           draggable
           pauseOnHover
           appendToBody={true} // Set appendToBody to true
-
-        />      )}
+        />
+      )}
     </div>
   );
 };

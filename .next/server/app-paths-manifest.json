@@ -1,9 +1,0 @@
-{
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/page": "app/page.js",
-  "/BountiesPage/page": "app/BountiesPage/page.js",
-  "/detailpage/page": "app/detailpage/page.js",
-  "/datarequest/page": "app/datarequest/page.js",
-  "/profile/page": "app/profile/page.js",
-  "/listing/page": "app/listing/page.js"
-}

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from "next/link";
-import Detail_header from "../components/detail_header";
+import DetailHeader from "../components/DetailHeader";
 import suit from "../assets/suit.svg";
 import timer from "../assets/timer.svg";
 import Image from 'next/image';

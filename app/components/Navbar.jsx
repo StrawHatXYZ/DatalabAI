@@ -77,7 +77,7 @@ const Navbar = () => {
             <li className="p-2 cursor-pointer text-lg">
               <Link href="/">Datalab AI</Link>
             </li>
-            <li>
+            {/* <li>
             <div className="relative">
         <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
             <FontAwesomeIcon icon={faSearch} className="w-4 h-4 text-gray-500 dark:text-gray-400" />
@@ -90,7 +90,7 @@ const Navbar = () => {
             required
         />
     </div>
-            </li>
+            </li> */}
           </ul>
         </div>
         {!user ? null : (

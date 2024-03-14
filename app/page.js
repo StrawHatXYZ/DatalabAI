@@ -30,15 +30,6 @@ const Home = () => {
           <h1 className="text-3xl font-bold mb-4">Welcome to the Datalab AI platform</h1>
         </div>
         <div className="flex item-center justify-center mt-10">
-          <div className="mt-10 item-center justify-center text-center">
-            <span className="ml-2 text-lg text-gray-500">Models</span>
-            <ModelCard></ModelCard>
-            <ModelCard></ModelCard>
-            <ModelCard></ModelCard>
-            <ModelCard></ModelCard>
-            <ModelCard></ModelCard>
-            <p className="text-gray-500 mt-10 cursor-pointer underline">Browse for more</p>
-          </div>
           <div className="mt-10 ml-12 item-center justify-center text-center">
             <span className="ml-2 text-lg text-gray-500">Bounties</span>
             <BountiesPage></BountiesPage>

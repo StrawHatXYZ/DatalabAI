@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import { addBounty } from "../firebase";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import 'react-quill/dist/quill.snow.css'; // Import Quill styles
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
@@ -17,6 +18,8 @@ const Listing = () => {
     description: "",
     cryptocurrency: "usdc",
     amount: 0,
+    adminWallet: "3SnpPo5Xrbmo8EmsN6xRtiBrDYWj9Br61rSQyBSugoeR", // Default admin wallet
+    senderWallet: "", // Default sender wallet
   });
 
   const formFields = [
@@ -26,18 +29,9 @@ const Listing = () => {
     { label: "Description", type: "text-editor", name: "description", placeholder: "Enter a description", required: true },
     { label: "Token", type: "select", name: "token", options: ["USDC", "ETH", "BTC"], required: true },
     { label: "Amount", type: "text", name: "amount", placeholder: "Enter an amount", required: true },
+    { label: "Admin Wallet", type: "text", name: "adminWallet", placeholder: "3SnpPo5Xrbmo8EmsN6xRtiBrDYWj9Br61rSQyBSugoeR", required: false, readOnly: true },
+    { label: "Sender Wallet", type: "text", name: "senderWallet", placeholder: "Enter Sender Wallet", required: true },
   ];
-
-  const quillModules = {
-    toolbar: [
-      [{ header: [1, 2, 3, 4, 5, false] }],
-      ["bold", "italic", "underline", "strike"],
-      [{ list: "ordered" }, { list: "bullet" }],
-      ["link", "image"],
-      [{ color: [] }, { background: [] }],
-      ["clean"],
-    ],
-  };
 
   useEffect(() => {
     setIsModalVisible(true);
@@ -59,6 +53,8 @@ const Listing = () => {
       description: "",
       cryptocurrency: "eth",
       amount: 0,
+      adminWallet: "3SnpPo5Xrbmo8EmsN6xRtiBrDYWj9Br61rSQyBSugoeR",
+      senderWallet: "",
     });
   };
 
@@ -66,7 +62,7 @@ const Listing = () => {
     e.preventDefault();
     console.log(formData);
   
-    const requiredFields = ["title", "contact", "deadline", "description"];
+    const requiredFields = ["title", "contact", "deadline", "description", "senderWallet"];
     
     for (const field of requiredFields) {
       if (formData[field] === "") {
@@ -93,7 +89,7 @@ const Listing = () => {
 
   return (
     <div className="fixed top-0 left-0 right-0 overflow-y-auto bg-gray-200 mt-12 py-4  flex flex-col items-center justify-center h-screen">
-      <span className="mt-72 text-2xl text-slate-500">Bounty Listing Form </span>
+      <span className="mt-96 text-2xl text-slate-500">Bounty Listing Form </span>
       <form className="w-3/5 mt-8 mb-36 bg-white rounded-lg shadow  p-8 ">
         {formFields.map((field, index) => (
           <div key={index} className="flex flex-col mt-4">
@@ -113,25 +109,20 @@ const Listing = () => {
               </select>
             ) : field.type === "text-editor" ? (
               <div className="mt-2">
-                {typeof window !== 'undefined' && <ReactQuill
+                <ReactQuill
                   value={formData.description}
                   onChange={(value) => setFormData((prevData) => ({ ...prevData, description: value }))}
-                  formats={[
-                    "header",
-                    "font",
-                    "size",
-                    "bold",
-                    "italic",
-                    "underline",
-                    "strike",
-                    "blockquote",
-                    "list",
-                    "bullet",
-                    "indent",
-                    "link",
-                    "image",
-                  ]}
-                />}
+                  modules={{
+                    toolbar: [
+                      [{ header: [1, 2, 3, 4, 5, false] }],
+                      ["bold", "italic", "underline", "strike"],
+                      [{ list: "ordered" }, { list: "bullet" }],
+                      ["link", "image"],
+                      [{ color: [] }, { background: [] }],
+                      ["clean"],
+                    ],
+                  }}
+                />
               </div>
             ) : (
               <input
@@ -141,7 +132,8 @@ const Listing = () => {
                 className="w-full mt-2 border-2 border-gray-200 rounded-md p-2"
                 onChange={(e) => setFormData({ ...formData, [field.name.toLowerCase()]: e.target.value })}
                 required={field.required}
-                value={formData[field.name.toLowerCase()]}
+                value={field.readOnly ? field.placeholder : formData[field.name.toLowerCase()]}
+                readOnly={field.readOnly}
               />
             )}
           </div>

@@ -56,22 +56,6 @@
         "async": false
       }
     },
-    "(app-client)/./app/page.js": {
-      "*": {
-        "id": "(sc_client)/./app/page.js",
-        "name": "*",
-        "chunks": [],
-        "async": false
-      }
-    },
-    "(app-client)/./node_modules/.pnpm/next@13.4.7_react-dom@18.2.0_react@18.2.0/node_modules/next/dist/client/link.js": {
-      "*": {
-        "id": "(sc_client)/./node_modules/.pnpm/next@13.4.7_react-dom@18.2.0_react@18.2.0/node_modules/next/dist/client/link.js",
-        "name": "*",
-        "chunks": [],
-        "async": false
-      }
-    },
     "(app-client)/./app/components/Navbar.jsx": {
       "*": {
         "id": "(sc_client)/./app/components/Navbar.jsx",
@@ -88,6 +72,14 @@
         "async": false
       }
     },
+    "(app-client)/./node_modules/.pnpm/next@13.4.7_react-dom@18.2.0_react@18.2.0/node_modules/next/dist/client/link.js": {
+      "*": {
+        "id": "(sc_client)/./node_modules/.pnpm/next@13.4.7_react-dom@18.2.0_react@18.2.0/node_modules/next/dist/client/link.js",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
     "(app-client)/./node_modules/.pnpm/react-toastify@10.0.4_react-dom@18.2.0_react@18.2.0/node_modules/react-toastify/dist/react-toastify.esm.mjs": {
       "*": {
         "id": "(sc_client)/./node_modules/.pnpm/react-toastify@10.0.4_react-dom@18.2.0_react@18.2.0/node_modules/react-toastify/dist/react-toastify.esm.mjs",
@@ -96,41 +88,9 @@
         "async": false
       }
     },
-    "(app-client)/./app/assets/suit.svg": {
+    "(app-client)/./app/page.js": {
       "*": {
-        "id": "(sc_client)/./app/assets/suit.svg",
-        "name": "*",
-        "chunks": [],
-        "async": false
-      }
-    },
-    "(app-client)/./app/assets/timer.svg": {
-      "*": {
-        "id": "(sc_client)/./app/assets/timer.svg",
-        "name": "*",
-        "chunks": [],
-        "async": false
-      }
-    },
-    "(app-client)/./app/detailpage/page.jsx": {
-      "*": {
-        "id": "(sc_client)/./app/detailpage/page.jsx",
-        "name": "*",
-        "chunks": [],
-        "async": false
-      }
-    },
-    "(app-client)/./node_modules/.pnpm/next@13.4.7_react-dom@18.2.0_react@18.2.0/node_modules/next/dist/client/image.js": {
-      "*": {
-        "id": "(sc_client)/./node_modules/.pnpm/next@13.4.7_react-dom@18.2.0_react@18.2.0/node_modules/next/dist/client/image.js",
-        "name": "*",
-        "chunks": [],
-        "async": false
-      }
-    },
-    "(app-client)/./node_modules/.pnpm/next@13.4.7_react-dom@18.2.0_react@18.2.0/node_modules/next/dist/shared/lib/head.js": {
-      "*": {
-        "id": "(sc_client)/./node_modules/.pnpm/next@13.4.7_react-dom@18.2.0_react@18.2.0/node_modules/next/dist/shared/lib/head.js",
+        "id": "(sc_client)/./app/page.js",
         "name": "*",
         "chunks": [],
         "async": false
@@ -299,30 +259,6 @@
       ],
       "async": false
     },
-    "/Users/captain_abhijeeth/Desktop/DatalabAI/app/page.js": {
-      "id": "(app-client)/./app/page.js",
-      "name": "*",
-      "chunks": [
-        "app/page:static/chunks/app/page.js"
-      ],
-      "async": false
-    },
-    "/Users/captain_abhijeeth/Desktop/DatalabAI/node_modules/.pnpm/next@13.4.7_react-dom@18.2.0_react@18.2.0/node_modules/next/dist/client/link.js": {
-      "id": "(app-client)/./node_modules/.pnpm/next@13.4.7_react-dom@18.2.0_react@18.2.0/node_modules/next/dist/client/link.js",
-      "name": "*",
-      "chunks": [
-        "app/detailpage/page:static/chunks/app/detailpage/page.js"
-      ],
-      "async": false
-    },
-    "/Users/captain_abhijeeth/Desktop/DatalabAI/node_modules/.pnpm/next@13.4.7_react-dom@18.2.0_react@18.2.0/node_modules/next/dist/esm/client/link.js": {
-      "id": "(app-client)/./node_modules/.pnpm/next@13.4.7_react-dom@18.2.0_react@18.2.0/node_modules/next/dist/client/link.js",
-      "name": "*",
-      "chunks": [
-        "app/detailpage/page:static/chunks/app/detailpage/page.js"
-      ],
-      "async": false
-    },
     "/Users/captain_abhijeeth/Desktop/DatalabAI/app/components/Navbar.jsx": {
       "id": "(app-client)/./app/components/Navbar.jsx",
       "name": "*",
@@ -339,6 +275,22 @@
       ],
       "async": false
     },
+    "/Users/captain_abhijeeth/Desktop/DatalabAI/node_modules/.pnpm/next@13.4.7_react-dom@18.2.0_react@18.2.0/node_modules/next/dist/client/link.js": {
+      "id": "(app-client)/./node_modules/.pnpm/next@13.4.7_react-dom@18.2.0_react@18.2.0/node_modules/next/dist/client/link.js",
+      "name": "*",
+      "chunks": [
+        "app/page:static/chunks/app/page.js"
+      ],
+      "async": false
+    },
+    "/Users/captain_abhijeeth/Desktop/DatalabAI/node_modules/.pnpm/next@13.4.7_react-dom@18.2.0_react@18.2.0/node_modules/next/dist/esm/client/link.js": {
+      "id": "(app-client)/./node_modules/.pnpm/next@13.4.7_react-dom@18.2.0_react@18.2.0/node_modules/next/dist/client/link.js",
+      "name": "*",
+      "chunks": [
+        "app/page:static/chunks/app/page.js"
+      ],
+      "async": false
+    },
     "/Users/captain_abhijeeth/Desktop/DatalabAI/node_modules/.pnpm/react-toastify@10.0.4_react-dom@18.2.0_react@18.2.0/node_modules/react-toastify/dist/react-toastify.esm.mjs": {
       "id": "(app-client)/./node_modules/.pnpm/react-toastify@10.0.4_react-dom@18.2.0_react@18.2.0/node_modules/react-toastify/dist/react-toastify.esm.mjs",
       "name": "*",
@@ -347,68 +299,16 @@
       ],
       "async": false
     },
-    "/Users/captain_abhijeeth/Desktop/DatalabAI/app/assets/suit.svg": {
-      "id": "(app-client)/./app/assets/suit.svg",
+    "/Users/captain_abhijeeth/Desktop/DatalabAI/app/page.js": {
+      "id": "(app-client)/./app/page.js",
       "name": "*",
       "chunks": [
-        "app/detailpage/page:static/chunks/app/detailpage/page.js"
-      ],
-      "async": false
-    },
-    "/Users/captain_abhijeeth/Desktop/DatalabAI/app/assets/timer.svg": {
-      "id": "(app-client)/./app/assets/timer.svg",
-      "name": "*",
-      "chunks": [
-        "app/detailpage/page:static/chunks/app/detailpage/page.js"
-      ],
-      "async": false
-    },
-    "/Users/captain_abhijeeth/Desktop/DatalabAI/app/detailpage/page.jsx": {
-      "id": "(app-client)/./app/detailpage/page.jsx",
-      "name": "*",
-      "chunks": [
-        "app/detailpage/page:static/chunks/app/detailpage/page.js"
-      ],
-      "async": false
-    },
-    "/Users/captain_abhijeeth/Desktop/DatalabAI/node_modules/.pnpm/next@13.4.7_react-dom@18.2.0_react@18.2.0/node_modules/next/dist/client/image.js": {
-      "id": "(app-client)/./node_modules/.pnpm/next@13.4.7_react-dom@18.2.0_react@18.2.0/node_modules/next/dist/client/image.js",
-      "name": "*",
-      "chunks": [
-        "app/detailpage/page:static/chunks/app/detailpage/page.js"
-      ],
-      "async": false
-    },
-    "/Users/captain_abhijeeth/Desktop/DatalabAI/node_modules/.pnpm/next@13.4.7_react-dom@18.2.0_react@18.2.0/node_modules/next/dist/esm/client/image.js": {
-      "id": "(app-client)/./node_modules/.pnpm/next@13.4.7_react-dom@18.2.0_react@18.2.0/node_modules/next/dist/client/image.js",
-      "name": "*",
-      "chunks": [
-        "app/detailpage/page:static/chunks/app/detailpage/page.js"
-      ],
-      "async": false
-    },
-    "/Users/captain_abhijeeth/Desktop/DatalabAI/node_modules/.pnpm/next@13.4.7_react-dom@18.2.0_react@18.2.0/node_modules/next/dist/shared/lib/head.js": {
-      "id": "(app-client)/./node_modules/.pnpm/next@13.4.7_react-dom@18.2.0_react@18.2.0/node_modules/next/dist/shared/lib/head.js",
-      "name": "*",
-      "chunks": [
-        "app/detailpage/page:static/chunks/app/detailpage/page.js"
-      ],
-      "async": false
-    },
-    "/Users/captain_abhijeeth/Desktop/DatalabAI/node_modules/.pnpm/next@13.4.7_react-dom@18.2.0_react@18.2.0/node_modules/next/dist/esm/shared/lib/head.js": {
-      "id": "(app-client)/./node_modules/.pnpm/next@13.4.7_react-dom@18.2.0_react@18.2.0/node_modules/next/dist/shared/lib/head.js",
-      "name": "*",
-      "chunks": [
-        "app/detailpage/page:static/chunks/app/detailpage/page.js"
+        "app/page:static/chunks/app/page.js"
       ],
       "async": false
     }
   },
   "entryCSSFiles": {
-    "/Users/captain_abhijeeth/Desktop/DatalabAI/app/page": {
-      "modules": [],
-      "files": []
-    },
     "/Users/captain_abhijeeth/Desktop/DatalabAI/app/layout": {
       "modules": [
         "/Users/captain_abhijeeth/Desktop/DatalabAI/app/globals.css",
@@ -419,7 +319,7 @@
         "static/css/app/layout.css"
       ]
     },
-    "/Users/captain_abhijeeth/Desktop/DatalabAI/app/detailpage/page": {
+    "/Users/captain_abhijeeth/Desktop/DatalabAI/app/page": {
       "modules": [],
       "files": []
     }

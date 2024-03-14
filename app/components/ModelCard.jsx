@@ -1,12 +1,15 @@
 
-const ModelCard = () => {
+const ModelCard = ({ dataset }) => {
     return (
         <div className="border border-gray-300 rounded-lg mt-4 w-fit">
              <article className="overview-card-wrapper group/repo white ">
       <a className="block p-2" href="/google/gemma-7b">
-        <header className="flex items-center mb-0.5" title="google/gemma-7b">
-          <h4 className="text-md truncate font-mono text-black dark:group-hover/repo:text-yellow-500 group-hover/repo:text-indigo-600 text-smd">google/gemma-7b</h4>
+        <header className="flex items-center mb-0.5" title={dataset.name}>
+          <h4 className="text-md truncate font-mono text-black dark:group-hover/repo:text-yellow-500 group-hover/repo:text-indigo-600 text-smd">{dataset.name}</h4>
         </header>
+
+      <p>{dataset.description}</p> {/* Example: Use dataset.description */}
+      {/* Render other dataset details as needed */}
         <div className="mr-1 flex items-center overflow-hidden whitespace-nowrap text-sm leading-tight text-gray-400">
           <span className="truncate">Updated
             <time datetime="2024-02-28T14:51:22" title="Wed, 28 Feb 2024 14:51:22 GMT"> about 16 hours ago</time>

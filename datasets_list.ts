@@ -78,12 +78,12 @@ declare type WidgetExampleFromModelcard = any;
 declare type ModelIndex = any;
 
 
-async function fetchDatasetsByKeyword(keyword: string): Promise<void> {
+async function fetchDatasetsByKeyword(keyword: string): Promise<any[]> {
   try {
     // Specify additional fields to fetch
     
     // Specify the limit for the number of datasets to fetch
-    const limit = 1;
+    const limit = 10;
     
     // Pass the additionalFields and limit options in the listDatasets call
     // const additionalFields = ['cardData', 'description', 'tags'];
@@ -107,14 +107,17 @@ async function fetchDatasetsByKeyword(keyword: string): Promise<void> {
       datasetList.push(dataset);
     }
 
-    console.log(`Top 100 datasets related to "${keyword}":`, datasetList);
+    // console.log(`Top 100 datasets related to "${keyword}":`, datasetList);
+    
+    return(datasetList);
   } catch (error) {
     console.error('Error fetching datasets:', error);
   }
 }
 
+export { fetchDatasetsByKeyword }; 
 // Example usage
-fetchDatasetsByKeyword('NLP'); // Replace 'NLP' with your desired keyword
+// fetchDatasetsByKeyword('NLP'); // Replace 'NLP' with your desired keyword
 
 
 // import { downloadFile } from '@huggingface/hub';
@@ -134,24 +137,24 @@ fetchDatasetsByKeyword('NLP'); // Replace 'NLP' with your desired keyword
 //   });
 
 
-import { downloadFile } from '@huggingface/hub';
-import * as fs from 'fs';
+// import { downloadFile } from '@huggingface/hub';
+// import * as fs from 'fs';
 
-const REPO_ID = 'Helsinki-NLP/bianet'; // Replace with your repo ID
-const FILENAME = ''; // Replace with your dataset filename
+// const REPO_ID = 'Helsinki-NLP/bianet'; // Replace with your repo ID
+// const FILENAME = ''; // Replace with your dataset filename
 
-downloadFile({ repo: REPO_ID, path: FILENAME, range: [0,100],credentials: {
-  accessToken: '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'
-} })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`Failed to download file: ${response.statusText}`);
-    }
-    return response.arrayBuffer();  // Convert the response body to an ArrayBuffer
-  })
-  .then(buffer => {
-    fs.writeFileSync('path/to/destination/data.csv', Buffer.from(buffer));  // Write the ArrayBuffer to a file
-  })
-  .catch(error => {
-    console.error('Error fetching dataset:', error);
-  });
+// downloadFile({ repo: REPO_ID, path: FILENAME, range: [0,100],credentials: {
+//   accessToken: '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'
+// } })
+//   .then(response => {
+//     if (!response.ok) {
+//       throw new Error(`Failed to download file: ${response.statusText}`);
+//     }
+//     return response.arrayBuffer();  // Convert the response body to an ArrayBuffer
+//   })
+//   .then(buffer => {
+//     fs.writeFileSync('path/to/destination/data.csv', Buffer.from(buffer));  // Write the ArrayBuffer to a file
+//   })
+//   .catch(error => {
+//     console.error('Error fetching dataset:', error);
+//   });

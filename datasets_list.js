@@ -44,6 +44,7 @@ var __asyncValues = (this && this.__asyncValues) || function (o) {
     function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.fetchDatasetsByKeyword = void 0;
 // async function fetchDatasets() {
 //   try {
 //     const datasets = await listDatasets();
@@ -105,7 +106,7 @@ function fetchDatasetsByKeyword(keyword) {
             switch (_e.label) {
                 case 0:
                     _e.trys.push([0, 14, , 15]);
-                    limit = 1;
+                    limit = 10;
                     additionalFields = ['cardData', 'description', 'tags'];
                     return [4 /*yield*/, (0, hub_1.listDatasets)({
                             search: { query: keyword },
@@ -150,9 +151,9 @@ function fetchDatasetsByKeyword(keyword) {
                     if (e_1) throw e_1.error;
                     return [7 /*endfinally*/];
                 case 12: return [7 /*endfinally*/];
-                case 13:
-                    console.log("Top 100 datasets related to \"".concat(keyword, "\":"), datasetList);
-                    return [3 /*break*/, 15];
+                case 13: 
+                // console.log(`Top 100 datasets related to "${keyword}":`, datasetList);
+                return [2 /*return*/, (datasetList)];
                 case 14:
                     error_1 = _e.sent();
                     console.error('Error fetching datasets:', error_1);
@@ -162,8 +163,9 @@ function fetchDatasetsByKeyword(keyword) {
         });
     });
 }
+exports.fetchDatasetsByKeyword = fetchDatasetsByKeyword;
 // Example usage
-fetchDatasetsByKeyword('NLP'); // Replace 'NLP' with your desired keyword
+// fetchDatasetsByKeyword('NLP'); // Replace 'NLP' with your desired keyword
 // import { downloadFile } from '@huggingface/hub';
 // import * as fs from 'fs';
 // const REPO_ID = '6244de99404da52375812a2a'; // Replace with your repo ID
@@ -176,22 +178,22 @@ fetchDatasetsByKeyword('NLP'); // Replace 'NLP' with your desired keyword
 //   .catch(error => {
 //     console.error('Error fetching dataset:', error);
 //   });
-var hub_2 = require("@huggingface/hub");
-var fs = require("fs");
-var REPO_ID = 'datsets/Helsinki-NLP/bianet'; // Replace with your repo ID
-var FILENAME = ''; // Replace with your dataset filename
-(0, hub_2.downloadFile)({ repo: REPO_ID, path: FILENAME, range: [0, 100], credentials: {
-        accessToken: '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'
-    } })
-    .then(function (response) {
-    if (!response.ok) {
-        throw new Error("Failed to download file: ".concat(response.statusText));
-    }
-    return response.arrayBuffer(); // Convert the response body to an ArrayBuffer
-})
-    .then(function (buffer) {
-    fs.writeFileSync('path/to/destination/data.csv', Buffer.from(buffer)); // Write the ArrayBuffer to a file
-})
-    .catch(function (error) {
-    console.error('Error fetching dataset:', error);
-});
+// import { downloadFile } from '@huggingface/hub';
+// import * as fs from 'fs';
+// const REPO_ID = 'Helsinki-NLP/bianet'; // Replace with your repo ID
+// const FILENAME = ''; // Replace with your dataset filename
+// downloadFile({ repo: REPO_ID, path: FILENAME, range: [0,100],credentials: {
+//   accessToken: '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'
+// } })
+//   .then(response => {
+//     if (!response.ok) {
+//       throw new Error(`Failed to download file: ${response.statusText}`);
+//     }
+//     return response.arrayBuffer();  // Convert the response body to an ArrayBuffer
+//   })
+//   .then(buffer => {
+//     fs.writeFileSync('path/to/destination/data.csv', Buffer.from(buffer));  // Write the ArrayBuffer to a file
+//   })
+//   .catch(error => {
+//     console.error('Error fetching dataset:', error);
+//   });

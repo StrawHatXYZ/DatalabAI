@@ -88,8 +88,8 @@ const Listing = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 right-0 overflow-y-auto bg-gray-200 mt-12 py-4  flex flex-col items-center justify-center h-screen">
-      <span className="mt-96 text-2xl text-slate-500">Bounty Listing Form </span>
+    <div className="fixed top-0 left-0 right-0 overflow-y-auto bg-gray-200 mt-12 py-4 flex flex-col items-center h-screen">
+      <span className="mt-12 text-2xl text-slate-500">Bounty Listing Form </span>
       <form className="w-3/5 mt-8 mb-36 bg-white rounded-lg shadow  p-8 ">
         {formFields.map((field, index) => (
           <div key={index} className="flex flex-col mt-4">

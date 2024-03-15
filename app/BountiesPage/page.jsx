@@ -25,7 +25,7 @@ const BountiesPage = () => {
   const displayedBounties = bounties.slice(0, 5);
 
   return (
-    <div className='w-fit'>
+    <div className='w-96'>
       {displayedBounties.map((bounty) => (
         <Card key={bounty.id} bounty={bounty} />
       ))}

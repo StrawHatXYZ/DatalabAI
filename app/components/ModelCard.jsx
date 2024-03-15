@@ -1,7 +1,7 @@
 
 const ModelCard = () => {
     return (
-        <div className="border border-gray-300 rounded-lg mt-4 w-fit">
+        <div className="bg-white p-4 rounded-lg mt-4 w-fit">
              <article className="overview-card-wrapper group/repo white ">
       <a className="block p-2" href="/google/gemma-7b">
         <header className="flex items-center mb-0.5" title="google/gemma-7b">

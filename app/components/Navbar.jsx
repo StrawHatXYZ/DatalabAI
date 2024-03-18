@@ -81,116 +81,93 @@ const Navbar = () => {
   }, [isAdmin]);
 
   return (
-    <>
-      {isAdmin ? (
-        // Render admin Navbar
-        <div className="fixed top-0 w-full bg-white shadow-lg z-50">
-          <div className="container mx-auto flex justify-between items-center py-4">
-            <div className="flex items-center space-x-4">
-              {/* Admin Dashboard link */}
-              <Link href="/AdminDashboard" className="text-xl font-bold text-gray-800">Admin Dashboard</Link>
-            </div>
-            <div className="flex items-center space-x-4">
-              {/* User display name */}
-              <span>{formatDisplayName(user.displayName)}</span>
-              {/* Logout button */}
-              <button onClick={handleSignOut} className="text-gray-800">Logout</button>
-            </div>
+    <div className="fixed top-0 w-full bg-white shadow-lg z-50">
+      <div className="container mx-auto flex justify-between items-center py-4">
+        <div className="flex items-center space-x-4 px-4">
+          <img src="https://firebasestorage.googleapis.com/v0/b/data-bounty-9a821.appspot.com/o/WhatsApp%20Image%202024-02-20%20at%204.27.58%20PM.jpeg?alt=media&token=14bd86c5-9492-411c-bdf3-ed5d4798c617" width={35} height={35} alt="Logo" />
+          <Link href="/" className="text-xl font-bold text-gray-800">Datalab AI</Link>
+        </div>
+        <div className="flex items-center space-x-4 mr-4 lg:hidden">
+          {/* Mobile menu icon */}
+          <div onClick={toggleMobileMenu}>
+            {isMobileMenuOpen ? (
+              <FontAwesomeIcon
+                icon={faTimes}
+                className="text-gray-800 cursor-pointer"
+              />
+            ) : (
+              <FontAwesomeIcon
+                icon={faBars}
+                className="text-gray-800 cursor-pointer"
+              />
+            )}
           </div>
         </div>
-      ) : (
-        // Render regular Navbar
-        <div className="fixed top-0 w-full bg-white shadow-lg z-50">
-          <div className="container mx-auto flex justify-between items-center py-4">
-            <div className="flex items-center space-x-4">
-              <img src="https://firebasestorage.googleapis.com/v0/b/data-bounty-9a821.appspot.com/o/WhatsApp%20Image%202024-02-20%20at%204.27.58%20PM.jpeg?alt=media&token=14bd86c5-9492-411c-bdf3-ed5d4798c617" width={35} height={35} alt="Logo" />
-              <Link href="/" className="text-xl font-bold text-gray-800">Datalab AI</Link>
-            </div>
-            <div className="flex items-center space-x-4 mr-4">
-              <ul className="hidden lg:flex items-center space-x-8 text-gray-800">
-                {/* Rest of the navigation links */}
-                {!user ? (
-                  <>
-                    <li onClick={handleSignIn} className="cursor-pointer">Login</li>
-                    <li onClick={handleSignIn} className="cursor-pointer">Sign up</li>
-                  </>
-                ) : (
-                  <>
-                    <li><Link href="#">Datasets</Link></li>
-                    <li><Link href="#">Bounties</Link></li>
-                    <li><Link href="/listing">Create a Listing</Link></li>
-                    <li><Link href="/datarequest">Data Request</Link></li>
-                    <li className="cursor-pointer relative" onClick={toggleDropdown}>
-                      <span className="flex items-center space-x-2">
-                        <span>{formatDisplayName(user.displayName)}</span>
-                        <FontAwesomeIcon icon={faUser} className="text-gray-500 text-xl" /> {/* Larger user icon */}
-                      </span>
-                      {/* Dropdown menu */}
-                      {showDropdown && (
-                        <ul className="absolute top-full left-0 w-48 bg-white border border-gray-200 rounded-lg shadow-lg py-2 z-50">
-                          <li className="cursor-pointer flex items-center justify-between px-4 py-2 hover:bg-gray-100 transition-colors">
-                            <Link href="/profile">Profile</Link>
-                            <FontAwesomeIcon icon={faUser} className="text-gray-500" />
-                          </li>
-                          <li className="cursor-pointer flex items-center justify-between px-4 py-2 hover:bg-gray-100 transition-colors">
-                            <Link href="/settings">Settings</Link>
-                            <FontAwesomeIcon icon={faCog} className="text-gray-500" />
-                          </li>
-                          <li className="cursor-pointer flex items-center justify-between px-4 py-2 hover:bg-gray-100 transition-colors" onClick={handleSignOut}>
-                            Sign out
-                            <FontAwesomeIcon icon={faSignOutAlt} className="text-gray-500" />
-                          </li>
-                        </ul>
-                      )}
+        <ul className="hidden lg:flex items-center space-x-8 text-gray-800">
+          {/* Rest of the navigation links */}
+          {!user ? (
+            <>
+              <li onClick={handleSignIn} className="cursor-pointer">Login</li>
+              <li onClick={handleSignIn} className="cursor-pointer">Sign up</li>
+            </>
+          ) : (
+            <>
+              <li><Link href="#">Datasets</Link></li>
+              <li><Link href="#">Bounties</Link></li>
+              <li><Link href="/listing">Create a Listing</Link></li>
+              <li><Link href="/datarequest">Data Request</Link></li>
+              <li className="cursor-pointer relative" onClick={toggleDropdown}>
+                <span className="flex items-center space-x-2">
+                  <span>{formatDisplayName(user.displayName)}</span>
+                  <FontAwesomeIcon icon={faUser} className="text-gray-500 text-xl" /> {/* Larger user icon */}
+                </span>
+                {/* Dropdown menu */}
+                {showDropdown && (
+                  <ul className="absolute top-full left-0 w-48 bg-white border border-gray-200 rounded-lg shadow-lg py-2 z-50">
+                    <li className="cursor-pointer flex items-center justify-between px-4 py-2 hover:bg-gray-100 transition-colors">
+                      <Link href="/profile">Profile</Link>
+                      <FontAwesomeIcon icon={faUser} className="text-gray-500" />
                     </li>
-                  </>
+                    <li className="cursor-pointer flex items-center justify-between px-4 py-2 hover:bg-gray-100 transition-colors">
+                      <Link href="/settings">Settings</Link>
+                      <FontAwesomeIcon icon={faCog} className="text-gray-500" />
+                    </li>
+                    <li className="cursor-pointer flex items-center justify-between px-4 py-2 hover:bg-gray-100 transition-colors" onClick={handleSignOut}>
+                      Sign out
+                      <FontAwesomeIcon icon={faSignOutAlt} className="text-gray-500" />
+                    </li>
+                  </ul>
                 )}
-              </ul>
-              {/* Mobile menu icon */}
-              <div className="lg:hidden ml-2"> {/* Added ml-2 for left margin */}
-                {isMobileMenuOpen ? (
-                  <FontAwesomeIcon
-                    icon={faTimes}
-                    className="text-gray-800 cursor-pointer"
-                    onClick={toggleMobileMenu}
-                  />
-                ) : (
-                  <FontAwesomeIcon
-                    icon={faBars}
-                    className="text-gray-800 cursor-pointer"
-                    onClick={toggleMobileMenu}
-                  />
-                )}
-              </div>
-            </div>
-          </div>
-          {/* Render mobile menu */}
-          {isMobileMenuOpen && (
-            <div className="bg-white py-4 lg:hidden">
-              <ul className="flex flex-col items-center space-y-4 text-gray-800">
-                {/* Rest of the navigation links */}
-                {!user ? (
-                  <>
-                    <li onClick={handleSignIn} className="cursor-pointer">Login</li>
-                    <li onClick={handleSignIn} className="cursor-pointer">Sign up</li>
-                  </>
-                ) : (
-                  <>
-                    <li><Link href="#">Models</Link></li>
-                    <li><Link href="#">Datasets</Link></li>
-                    <li><Link href="#">Bounties</Link></li>
-                    <li><Link href="/listing">Create a Listing</Link></li>
-                    <li><Link href="/datarequest">Data Request</Link></li>
-                    <li><Link href="/profile">Profile</Link></li>
-                    <li onClick={handleSignOut} className="cursor-pointer">Sign out</li>
-                  </>
-                )}
-              </ul>
-            </div>
+              </li>
+            </>
           )}
+        </ul>
+      </div>
+      {/* Render mobile menu */}
+      {isMobileMenuOpen && (
+        <div className="bg-white py-4 lg:hidden">
+          <ul className="flex flex-col items-center space-y-4 text-gray-800">
+            {/* Rest of the navigation links */}
+            {!user ? (
+              <>
+                <li onClick={handleSignIn} className="cursor-pointer">Login</li>
+                <li onClick={handleSignIn} className="cursor-pointer">Sign up</li>
+              </>
+            ) : (
+              <>
+                <li><Link href="#">Models</Link></li>
+                <li><Link href="#">Datasets</Link></li>
+                <li><Link href="#">Bounties</Link></li>
+                <li><Link href="/listing">Create a Listing</Link></li>
+                <li><Link href="/datarequest">Data Request</Link></li>
+                <li><Link href="/profile">Profile</Link></li>
+                <li onClick={handleSignOut} className="cursor-pointer">Sign out</li>
+              </>
+            )}
+          </ul>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

@@ -30,7 +30,7 @@ const Home = () => {
       <input
         type="text"
         placeholder="Search..."
-        className="w-full max-w-md p-3 text-lg rounded border border-gray-300 shadow-md"
+        className="w-96 max-w-md m-4 p-4 text-lg rounded border border-gray-300 shadow-md"
       />
       <div className="mt-8 mb-8 flex flex-col md:flex-row justify-between w-full max-w-4xl"> {/* Added responsive flex direction */}
         <div className="flex flex-col items-center space-y-4 w-full md:w-48 md:mr-4"> {/* Added responsive width and margin */}

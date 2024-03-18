@@ -106,7 +106,7 @@ const Navbar = () => {
               <img src="https://firebasestorage.googleapis.com/v0/b/data-bounty-9a821.appspot.com/o/WhatsApp%20Image%202024-02-20%20at%204.27.58%20PM.jpeg?alt=media&token=14bd86c5-9492-411c-bdf3-ed5d4798c617" width={35} height={35} alt="Logo" />
               <Link href="/" className="text-xl font-bold text-gray-800">Datalab AI</Link>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4 mr-4">
               <ul className="hidden lg:flex items-center space-x-8 text-gray-800">
                 {/* Rest of the navigation links */}
                 {!user ? (
@@ -147,17 +147,17 @@ const Navbar = () => {
                 )}
               </ul>
               {/* Mobile menu icon */}
-              <div className="lg:hidden">
+              <div className="lg:hidden ml-2"> {/* Added ml-2 for left margin */}
                 {isMobileMenuOpen ? (
                   <FontAwesomeIcon
                     icon={faTimes}
-                    className="text-gray-800 cursor-pointer ml-2" // Added ml-2 for left margin
+                    className="text-gray-800 cursor-pointer"
                     onClick={toggleMobileMenu}
                   />
                 ) : (
                   <FontAwesomeIcon
                     icon={faBars}
-                    className="text-gray-800 cursor-pointer ml-2" // Added ml-2 for left margin
+                    className="text-gray-800 cursor-pointer"
                     onClick={toggleMobileMenu}
                   />
                 )}

@@ -1,31 +1,47 @@
 "use client";
 
-import { getBounties } from "../firebase";
-import { useEffect, useState } from "react";   
+import { getBounties, updateBountyStatus } from "../firebase";
+import { useEffect, useState } from "react";
 
 const AdminDashboard = () => {
     const [bounties, setBounties] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-      const fetchBounties = async () => {
-        try {
-          const bounties = await getBounties();
-          setBounties(bounties);
-          setLoading(false);
-        } catch (error) {
-          console.error(error);
-        }
-      };
-      fetchBounties();
+        const fetchBounties = async () => {
+            try {
+                const bounties = await getBounties();
+                setBounties(bounties);
+                setLoading(false);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchBounties();
     }, []);
 
-    const handleApprove = (bountyId) => {
-      // Logic to handle approval of the bounty with ID bountyId
+    const handleApprove = async (bountyId) => {
+        try {
+            await updateBountyStatus(bountyId, "approved"); // Update bounty status to "approved"
+            setBounties(prevBounties =>
+                prevBounties.map(bounty =>
+                    bounty.id === bountyId ? { ...bounty, status: "approved" } : bounty
+                )
+            );
+        } catch (error) {
+            console.error("Error updating bounty status:", error);
+        }
     };
 
-    const handleReject = (bountyId) => {
-      // Logic to handle rejection of the bounty with ID bountyId
+    const handleReject = async (bountyId) => {
+        try {
+            await updateBountyStatus(bountyId, "rejected"); // Update bounty status to "rejected"
+            setBounties(prevBounties =>
+                prevBounties.filter(bounty => bounty.id !== bountyId)
+            );
+        } catch (error) {
+            console.error("Error updating bounty status:", error);
+        }
     };
 
     return (
@@ -42,12 +58,12 @@ const AdminDashboard = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {bounties.map((bounty, index) => (
+                    {bounties.filter(bounty => bounty.status === "pending").map((bounty, index) => (
                         <tr key={index}>
                             <td>{bounty.title}</td>
                             <td>${bounty.amount}</td>
                             <td>{bounty.deadline}</td>
-                            <td>{bounty.sender}</td>
+                            <td>{bounty.senderwallet}</td>
                             <td>{bounty.status}</td>
                             <td>
                                 <button className="approve-btn" onClick={() => handleApprove(bounty.id)}>Approve</button>

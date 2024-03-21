@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore, collection, addDoc ,getDocs,getDoc,doc} from "firebase/firestore";
+import { getFirestore, collection, addDoc ,getDocs,getDoc,doc,updateDoc} from "firebase/firestore";
 import { ref, uploadBytesResumable, getStorage } from 'firebase/storage';
 
 // Your web app's Firebase configuration
@@ -102,6 +102,17 @@ export const addDataset = async (datasetData) => {
     return docRef.id;
   } catch (error) {
     console.error("Error adding dataset: ", error.message);
+    throw error;
+  }
+};
+
+export const updateBountyStatus = async (bountyId, status) => {
+  try {
+    const bountyDocRef = doc(db, "bounties", bountyId);
+    await updateDoc(bountyDocRef, { status: status });
+    console.log("Bounty status updated successfully");
+  } catch (error) {
+    console.error("Error updating bounty status: ", error.message);
     throw error;
   }
 };

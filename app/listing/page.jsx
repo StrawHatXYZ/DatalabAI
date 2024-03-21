@@ -18,8 +18,9 @@ const Listing = () => {
     description: "",
     cryptocurrency: "usdc",
     amount: 0,
-    adminWallet: "3SnpPo5Xrbmo8EmsN6xRtiBrDYWj9Br61rSQyBSugoeR", // Default admin wallet
-    senderWallet: "", // Default sender wallet
+    adminwallet: "3SnpPo5Xrbmo8EmsN6xRtiBrDYWj9Br61rSQyBSugoeR", // Default admin wallet
+    senderwallet: "",
+    status:"pending" // Default sender wallet
   });
 
   const formFields = [
@@ -54,7 +55,7 @@ const Listing = () => {
       cryptocurrency: "eth",
       amount: 0,
       adminWallet: "3SnpPo5Xrbmo8EmsN6xRtiBrDYWj9Br61rSQyBSugoeR",
-      senderWallet: "",
+      senderwallet: "",
     });
   };
 
@@ -62,10 +63,10 @@ const Listing = () => {
     e.preventDefault();
     console.log(formData);
   
-    const requiredFields = ["title", "contact", "deadline", "description", "senderWallet"];
-    
+    const requiredFields = ["title", "contact", "deadline", "description", "senderwallet"];
+  
     for (const field of requiredFields) {
-      if (formData[field] === "") {
+      if (!formData[field]) { // Check if the field is empty or falsy
         setIsModalVisible(true);
         toast.error(`${field.charAt(0).toUpperCase() + field.slice(1)} is required`, { position: "top-right", autoClose: 3000 });
         return;
@@ -85,10 +86,9 @@ const Listing = () => {
       .catch((error) => {
         toast.error("Error adding bounty: " + error.message);
       });
-  };
-
+  };  
   return (
-    <div className="fixed top-0 left-0 right-0 overflow-y-auto bg-gray-200 mt-12 py-4 flex flex-col items-center h-screen">
+    <div className="fixed top-0 left-0 right-0 overflow-y-auto bg-gray-200 mt-20 py-4 z-40 flex flex-col items-center h-screen">
       <span className="mt-12 text-2xl text-slate-500">Bounty Listing Form </span>
       <form className="w-3/5 mt-8 mb-36 bg-white rounded-lg shadow  p-8 ">
         {formFields.map((field, index) => (
@@ -158,7 +158,7 @@ const Listing = () => {
           rtl={false}
           draggable
           pauseOnHover
-          appendToBody={true} // Set appendToBody to true
+          appendToBody={true} 
         />
       )}
     </div>

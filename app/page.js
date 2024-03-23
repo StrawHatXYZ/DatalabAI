@@ -33,20 +33,34 @@ const Home = () => {
         console.error('Error fetching datasets:', error);
       }
     };
-
+    const fetchData = async () => {
+      try {
+      const response = await fetch(`https://api.publicapis.org/entries`, {
+          headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json'
+          }
+      });
+      const jsonData = await response.json();
+      console.log("Fetched data:", jsonData);
+      } catch (error) {
+      console.error("Error fetching data:", error);
+      }
+  };
+    fetchData();  
     fetchBounties();
     fetchAndSetDatasets();
   }, []);
 
-  const fetchAndSetDatasets = async (query) => {
-    try {
-      const fetchedDatasets = await fetchDatasetsByKeyword(query || 'NLP');
-      console.log("Top 100 datasets related to", query || 'NLP', fetchedDatasets);
-      setDatasets(fetchedDatasets.slice(0, 4));
-    } catch (error) {
-      console.error('Error fetching datasets:', error);
-    }
-  };
+   const fetchAndSetDatasets = async (query) => {
+      try {
+        const fetchedDatasets = await fetchDatasetsByKeyword(query || 'NLP');
+        console.log("Top 100 datasets related to", query || 'NLP', fetchedDatasets);
+        setDatasets(fetchedDatasets.slice(0, 4));
+      } catch (error) {
+        console.error('Error fetching datasets:', error);
+      }
+    };
 
   const handleSearch = async () => {
     setLoading(true);
@@ -89,5 +103,6 @@ const Home = () => {
     </div>
   );
 };
+
 
 export default Home;

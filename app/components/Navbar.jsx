@@ -153,11 +153,8 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <li><Link href="#">Models</Link></li>
-                <li><Link href="#">Datasets</Link></li>
-                <li><Link href="#">Bounties</Link></li>
-                <li><Link href="/listing">Create a Listing</Link></li>
-                <li><Link href="/datarequest">Data Request</Link></li>
+                <li><Link href="/Datasets">Datasets</Link></li>
+                <li><Link href="/Bounties">Bounties</Link></li>
                 <li><Link href="/profile">Profile</Link></li>
                 <li onClick={handleSignOut} className="cursor-pointer">Sign out</li>
               </>

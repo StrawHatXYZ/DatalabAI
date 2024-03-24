@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation';
 
 const Dataset = () => {
     const router = useRouter();
@@ -15,17 +16,12 @@ const Dataset = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-            const response = await fetch(`https://api.publicapis.org/entries`, {
-                headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json'
-                }
-            });
-            const jsonData = await response.json();
-            console.log("Fetched data:", jsonData);
-            setData(jsonData);
+                const response = await axios.get(`https://us-central1-sandbox-410710.cloudfunctions.net/dataset_download?dataset_id=Helsinki-NLP/eitb_parcc`, {
+                });
+                console.log("Fetched data:", response.data);
+                setData(response.data);
             } catch (error) {
-            console.error("Error fetching data:", error);
+                console.error("Error fetching data:", error);
             }
         };
 
@@ -39,5 +35,6 @@ const Dataset = () => {
             )}
         </div>
     );
-    };
+};
+
 export default Dataset;

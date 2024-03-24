@@ -8,7 +8,7 @@ const Card = ({ bounty }) => {
         query: { id: bounty.id },
       }}
     >
-      <div className="bg-white rounded-lg shadow p-1  w-full md:w-96">
+      <div className="bg-white rounded-lg shadow p-1 mt-2 w-full md:w-96">
         <article className="overflow-hidden">
           <a className="block p-4 md:p-2" href={`/detailpage?id=${bounty.id}`}>
             <header className="flex items-center" title={bounty.title}>

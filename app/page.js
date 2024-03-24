@@ -11,6 +11,7 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [datasets, setDatasets] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isMobile, setIsMobile] = useState(false); // State to track mobile view
 
   useEffect(() => {
     const fetchBounties = async () => {
@@ -32,35 +33,29 @@ const Home = () => {
       } catch (error) {
         console.error('Error fetching datasets:', error);
       }
+    }; 
+
+    // Detect if the screen size is mobile
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768); // Adjust the breakpoint as needed
     };
-    const fetchData = async () => {
-      try {
-      const response = await fetch(`https://api.publicapis.org/entries`, {
-          headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json'
-          }
-      });
-      const jsonData = await response.json();
-      console.log("Fetched data:", jsonData);
-      } catch (error) {
-      console.error("Error fetching data:", error);
-      }
-  };
-    fetchData();  
+    
     fetchBounties();
     fetchAndSetDatasets();
+    handleResize(); // Initial check for mobile view
+    window.addEventListener('resize', handleResize); // Listen for window resize
+    return () => window.removeEventListener('resize', handleResize); // Cleanup listener
   }, []);
 
-   const fetchAndSetDatasets = async (query) => {
-      try {
-        const fetchedDatasets = await fetchDatasetsByKeyword(query || 'NLP');
-        console.log("Top 100 datasets related to", query || 'NLP', fetchedDatasets);
-        setDatasets(fetchedDatasets.slice(0, 4));
-      } catch (error) {
-        console.error('Error fetching datasets:', error);
-      }
-    };
+  const fetchAndSetDatasets = async (query) => {
+    try {
+      const fetchedDatasets = await fetchDatasetsByKeyword(query || 'NLP');
+      console.log("Top 100 datasets related to", query || 'NLP', fetchedDatasets);
+      setDatasets(fetchedDatasets.slice(0, 4));
+    } catch (error) {
+      console.error('Error fetching datasets:', error);
+    }
+  };
 
   const handleSearch = async () => {
     setLoading(true);
@@ -77,32 +72,40 @@ const Home = () => {
   const displayedBounties = bounties.slice(0, 4);
 
   return (
-    <div className="fixed top-0 left-0 right-0 overflow-y-auto bg-gray-200 mt-20 py-4 flex flex-col items-center h-screen">
-      <input
+    <div className={`fixed top-0 left-0 right-0 overflow-y-auto bg-gray-200 mt-20 py-4 flex flex-col items-center ${isMobile ? 'h-screen' : 'min-h-screen'}`}>
+      {/* <input
         type="text"
         placeholder="Search..."
         className="w-96 max-w-md m-4 p-4 text-lg rounded-full border border-gray-300 shadow-md"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        onKeyPress={handleKeyPress} // Call handleSearch when Enter key is pressed
-      />
+        onKeyPress={handleKeyPress}
+      /> */}
       <div className="mt-8 mb-8 flex flex-col md:flex-row justify-between w-full max-w-4xl">
-        <div className="flex flex-col items-center space-y-4 w-full md:w-48 md:mr-4">
-          <h2 className="text-lg font-semibold mb-2">Datasets</h2>
+        <div className={`flex flex-col items-center space-y-2 w-full ${isMobile ? 'md:w-full' : 'md:w-48'} ${isMobile ? 'md:mr-0' : 'md:mr-4'}`}>
+          <h2 className="text-lg font-semibold mb-4">Datasets</h2>
           {datasets.map(dataset => (
             <ModelCard key={dataset.id} dataset={dataset} />
           ))}
+          <p className="text-gray-600 cursor-pointer mt-4 underline hover:no-underline hover:text-blue-500">
+  Browse for more
+</p>
+
         </div>
-        <div className="flex flex-col items-center space-y-4 w-full md:w-48 md:ml-4">
+        <div className={`flex flex-col items-center space-y-4 w-full ${isMobile ? 'md:w-full mt-8 ' : 'md:w-48'} ${isMobile ? 'md:ml-0' : 'md:ml-4'}`}>
           <h2 className="text-lg font-semibold mb-2">Bounties</h2>
           {displayedBounties.map(bounty => (
             <Card key={bounty.id} bounty={bounty} />
           ))}
+           <p className="text-gray-600 cursor-pointer mt-4 mb-2 underline hover:no-underline hover:text-blue-500">
+  Browse for more
+</p>
+
         </div>
+       
       </div>
     </div>
   );
 };
-
 
 export default Home;

@@ -79,7 +79,9 @@ const Detail = () => {
           </div>
           <div className="bg-white flex flex-col p-4 ml-10 w-96 mt-10 h-fit rounded border-2 border-gray-100">
             <span className="text-gray-400">CONTACT</span>
+            <Link href="https://twitter.com/chsk_kishore">
             <span className="">React out  if you have any questions about the bounty</span>
+            </Link>
           </div>
         </div>
       </div>

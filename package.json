@@ -23,6 +23,7 @@
     "debug": "^4.3.4",
     "encoding": "^0.1.13",
     "firebase": "^9.23.0",
+    "html-react-parser": "^5.1.9",
     "next": "13.4.7",
     "nextjs-cors": "^2.2.0",
     "postcss": "8.4.24",

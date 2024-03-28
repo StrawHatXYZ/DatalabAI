@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation';
+import DatasetHeader from "../components/DatasetHeader";
 
 const Dataset = () => {
     const router = useRouter();
@@ -29,10 +30,8 @@ const Dataset = () => {
     }, [id]);
 
     return (
-        <div className="fixed top-0 left-0 right-0 overflow-y-auto bg-gray-200 mt-12 py-4 flex flex-col items-center h-screen">
-            {data && (
-                <pre>{JSON.stringify(data, null, 2)}</pre>
-            )}
+        <div className="fixed top-0 left-0 right-0 overflow-y-auto bg-gray-200 mt-12 py-4 flex flex-col">
+            <DatasetHeader />
         </div>
     );
 };

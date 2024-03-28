@@ -88,6 +88,14 @@ const Navbar = () => {
           <Link href="/" className="text-xl font-bold text-gray-800">Datalab AI</Link>
           <input type="text" placeholder="Search" className="px-2 py-1 border border-gray-300 rounded-md" />
         </div>
+        {/* Hamburger menu icon for mobile */}
+        <div className="lg:hidden pr-4">
+          <FontAwesomeIcon
+            icon={faBars}
+            className="text-gray-800 text-xl cursor-pointer"
+            onClick={toggleMobileMenu}
+          />
+        </div>
         <ul className="hidden lg:flex items-center space-x-8 text-gray-800">
           {/* Rest of the navigation links */}
           {!user ? (

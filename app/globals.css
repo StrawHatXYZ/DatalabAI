@@ -61,6 +61,18 @@ body {
   color: #fff;
 }
 
+.table-cell {
+    max-height: 3.6em; /* Adjust as needed based on your font size and desired height */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.table-cell-expanded {
+    max-height: none;
+    white-space: normal;
+}
+
 
 
   /* Add this to your styles */

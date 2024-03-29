@@ -83,7 +83,12 @@ const Navbar = () => {
   return (
     <div className="fixed top-0 w-full bg-white shadow-lg z-40">
       <div className="container mx-auto flex justify-between items-center py-4">
-        <div className="flex items-center space-x-4 px-4">
+        {/* Logo, search bar, and hamburger menu icon */}
+        <div className="flex items-center space-x-4 px-4 lg:hidden">
+          <img src="https://firebasestorage.googleapis.com/v0/b/data-bounty-9a821.appspot.com/o/WhatsApp%20Image%202024-02-20%20at%204.27.58%20PM.jpeg?alt=media&token=14bd86c5-9492-411c-bdf3-ed5d4798c617" width={35} height={35} alt="Logo" />
+          <input type="text" placeholder="Search" className="px-2 py-1 border border-gray-300 rounded-md" />
+        </div>
+        <div className="hidden lg:flex items-center space-x-4 px-4">
           <img src="https://firebasestorage.googleapis.com/v0/b/data-bounty-9a821.appspot.com/o/WhatsApp%20Image%202024-02-20%20at%204.27.58%20PM.jpeg?alt=media&token=14bd86c5-9492-411c-bdf3-ed5d4798c617" width={35} height={35} alt="Logo" />
           <Link href="/" className="text-xl font-bold text-gray-800">Datalab AI</Link>
           <input type="text" placeholder="Search" className="px-2 py-1 border border-gray-300 rounded-md" />

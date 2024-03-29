@@ -41,7 +41,7 @@ const Dataset = () => {
                     setAttributes({
                         row_size: response.data['config']['dataset_size'],
                         download_size: downloads,
-                        tags:Tags
+                        tags: Tags
                     });
                 }
 
@@ -63,14 +63,14 @@ const Dataset = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="bg-white rounded-lg shadow-md p-6"
+                    className="bg-white rounded-lg shadow-md p-6" // Removed flex classes
                 >
                     <h1 className="text-3xl font-bold mb-4">Dataset Viewer</h1>
-                    {loading ? ( // Conditionally render loading message or spinner
-                        <p>Loading...</p>
-                    ) : (
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                            <div className="overflow-x-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6"> {/* Updated grid layout for responsiveness */}
+                        <div className="col-span-2 overflow-x-auto"> {/* Updated column span and removed width class */}
+                            {loading ? ( // Conditionally render loading message or spinner
+                                <p>Loading...</p>
+                            ) : (
                                 <table className="w-full border-collapse border border-gray-400 bg-white rounded-lg shadow-md">
                                     <thead className="bg-gray-200">
                                         <tr>
@@ -94,17 +94,17 @@ const Dataset = () => {
                                         ))}
                                     </tbody>
                                 </table>
-                            </div>
-                            <div className="flex flex-col">
-                                <div className="bg-white rounded-lg shadow-md p-6">
-                                    <h2 className="text-xl font-semibold mb-4">Dataset Attributes</h2>
-                                    <p className="mb-2">Downloads: {attributes.download_size}</p>
-                                    <p className="mb-2">Number of Rows: {attributes.row_size}</p>
-                                    <p className="mb-2">Tags: {attributes.Tags}</p>
-                                </div>
+                            )}
+                        </div>
+                        <div className="col-span-1">
+                            <div className="bg-white rounded-lg shadow-md p-6">
+                                <h2 className="text-xl font-semibold mb-4">Dataset Attributes</h2>
+                                <p className="mb-2">Downloads: {attributes.download_size}</p>
+                                <p className="mb-2">Number of Rows: {attributes.row_size}</p>
+                                <p className="mb-2">Tags: {attributes.Tags}</p>
                             </div>
                         </div>
-                    )}
+                    </div>
                 </motion.div>
             </div>
         </div>

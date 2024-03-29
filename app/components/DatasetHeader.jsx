@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from 'react';
 
 const DatasetHeader = ({ datasetName }) => {
@@ -16,7 +18,7 @@ const DatasetHeader = ({ datasetName }) => {
 
     return (
         <div className={`flex flex-col items-center justify-center md:flex-row md:items-center md:justify-between border-2 mt-${isMobile ? 3 : 0} border-white bg-white`}>
-            <div className="card-container rounded mt-10 mb-5">
+            <div className={`card-container rounded mt-10 mb-5 ${isMobile ? '' : 'ml-24'}`}>
                 <div className="flex flex-col md:flex-row items-center justify-between p-4 card-content transition duration-300 ease-in-out transform hover:translate-y-1">
                     <div className="flex flex-col">
                         <h1 className="text-2xl"> Dataset: {datasetName} </h1>

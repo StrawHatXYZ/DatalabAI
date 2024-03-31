@@ -1,16 +1,15 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from "next/link";
 import Modal from "../components/Modal";
 import DetailHeader from "../components/DetailHeader";
 import suit from "../assets/suit.svg";
 import timer from "../assets/timer.svg";
+import twitter from "../../public/twitter.png";
 import Image from 'next/image';
 import { getBounty } from "../firebase";
-import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation'
-import { useEffect } from 'react';
 import parse from 'html-react-parser';
 
 const Detail = () => {
@@ -18,7 +17,6 @@ const Detail = () => {
   const id = searchParams.get('id')
   console.log(id);
   const [bounty, setBounty] = useState({});
-  const [reward, setReward] = useState();
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -43,6 +41,15 @@ const Detail = () => {
     fetchBounty();
   }, []);
 
+  const formatDeadline = (deadline) => {
+    const diff = new Date(deadline) - new Date();
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+    return `${days}d:${hours}h:${minutes}m`;
+  };
+
   return (
     <div className="">
       <DetailHeader  bounty={bounty} />
@@ -56,11 +63,11 @@ const Detail = () => {
             <div className="flex flex-row space-x-40"> 
               <div className="flex flex-row">
                 <Image src={suit} alt="suit" width={25} height={25} />
-                <h1 className="text-xl ml-2">0</h1>
+                <h1 className="text-xl ml-2">{bounty.submissions}</h1>
               </div>
               <div className="flex flex-row ">
                 <Image src={timer} alt="timer" width={25} height={25} />
-                <h1 className="text-xl ml-2">3d:29h:32m</h1>
+                <h1 className="text-xl ml-2">{formatDeadline(bounty.deadline)}</h1>
               </div>
             </div>
             <div className="flex flex-row space-x-32"> 
@@ -79,13 +86,18 @@ const Detail = () => {
           </div>
           <div className="bg-white flex flex-col p-4 ml-10 w-96 mt-10 h-fit rounded border-2 border-gray-100">
             <span className="text-gray-400">CONTACT</span>
-            <Link href="https://twitter.com/chsk_kishore">
-            <span className="">React out  if you have any questions about the bounty</span>
-            </Link>
+            <span className="flex items-center mt-4 space-x-2">
+              <Image src={twitter} alt="suit" width={25} height={25} />
+              {bounty.contact && (
+                <Link href={bounty.contact}>
+                  <span className="text-blue-500 hover:underline">{bounty.name}</span>
+                </Link>
+              )}
+            </span>
           </div>
         </div>
       </div>
-      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+      <Modal isOpen={isModalOpen} bounty={id} onClose={handleCloseModal}>
         <h1>Modal Content</h1>
         <button onClick={handleCloseModal}>Close Modal</button>
       </Modal>

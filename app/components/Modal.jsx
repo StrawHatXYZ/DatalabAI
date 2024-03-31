@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { addSubmission } from '../firebase';
 
-const Modal = ({ isOpen, onClose, onSubmit }) => {
+const Modal = ({ isOpen,bounty, onClose, onSubmit }) => {
   const [submissionLink, setSubmissionLink] = useState('');
   const [solanaWalletAddress, setSolanaWalletAddress] = useState('');
   const [submissionLinkError, setSubmissionLinkError] = useState('');
@@ -17,6 +18,7 @@ const Modal = ({ isOpen, onClose, onSubmit }) => {
   };
 
   const handleSubmit = () => {
+    console.log(bounty);
     // Perform validation
     let hasErrors = false;
     if (!submissionLink.trim()) {
@@ -32,8 +34,9 @@ const Modal = ({ isOpen, onClose, onSubmit }) => {
       return; // Don't submit if there are errors
     }
 
+    addSubmission(bounty, submissionLink, solanaWalletAddress);
     // Call the onSubmit function
-    onSubmit(submissionLink, solanaWalletAddress);
+    // onSubmit(submissionLink, solanaWalletAddress);
     // Close the modal
     onClose();
   };

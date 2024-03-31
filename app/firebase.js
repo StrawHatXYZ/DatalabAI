@@ -1,7 +1,9 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore, collection, addDoc ,getDocs,getDoc,doc,updateDoc} from "firebase/firestore";
+import 'firebase/firestore'; // Import firestore
+import firebase from 'firebase/app'; // Import firebase
+import { query,where,getFirestore, collection, addDoc, getDocs, getDoc, doc, updateDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getStorage } from 'firebase/storage';
 
 // Your web app's Firebase configuration
@@ -18,7 +20,6 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
-
 
 export const addBounty = async (bountyData) => {
   try {
@@ -73,7 +74,38 @@ export const getBounty = async (bountyId) => {
   }
 };
 
-// i have to store the file in firebase called csv file, i have to store it like that was uploaded by that user
+export const addSubmission = async (bountyId, submissionLink, walletAddress) => {
+  try {
+    // Reference to the bounty document
+    const bountyDoc = await getDoc(doc(db, "bounties", bountyId));
+    // Check if the sender has already submitted a submission
+    const sender = auth.currentUser.uid;
+    const submissionsQuery = query(collection(db, "submissions"), where("sender", "==", sender));
+    const submissionsSnapshot = await getDocs(submissionsQuery);
+    if (!submissionsSnapshot.empty) {
+      alert("your already submitted a submission");
+      return;
+    }
+    // Increment the value in the 'submissions' field of 'bountyDoc'
+    const submissionsCount = parseInt(bountyDoc.data().submissions) + 1;
+    await updateDoc(bountyDoc.ref, { submissions: submissionsCount });
+    // Reference to the submissions subcollection within the bounty document
+    const submissions = collection(db, "submissions");
+    // Add a new document with a generated ID in the submissions subcollection
+    const docRef = await addDoc(submissions, {
+      bountyId: bountyId,
+      submissionLink: submissionLink,
+      walletAddress: walletAddress,
+      sender: sender,
+      timestamp: new Date()
+    });
+    console.log("Submission added with ID: ", docRef.id);
+    return docRef.id;
+  } catch (error) {
+    console.error("Error adding submission: ", error);
+    throw error;
+  }
+};
 
 export const uploadFile = async (file) => {
   try {
@@ -81,7 +113,7 @@ export const uploadFile = async (file) => {
     const uploadTask = uploadBytesResumable(storageRef, file);
     const snapshot = await uploadTask;
     console.log("Uploaded a blob or file!", snapshot);
-    return snapshot.ref.fullPath
+    return snapshot.ref.fullPath;
   } catch (error) {
     console.error("Error uploading file: ", error.message);
     throw error;
@@ -116,4 +148,5 @@ export const updateBountyStatus = async (bountyId, status) => {
     throw error;
   }
 };
-export { auth }; // Exporting the auth object
+
+export { auth}; // Exporting the auth object and addSubmission function

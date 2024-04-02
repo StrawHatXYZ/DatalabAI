@@ -33,7 +33,6 @@ export const AuthContextProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={{ user, googleSignIn, logOut }}>
-      if
       {children}
     </AuthContext.Provider>
   );

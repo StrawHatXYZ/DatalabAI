@@ -51,34 +51,34 @@ const Detail = () => {
   };
 
   return (
-    <div className="relative">
+    <div className="">
       <DetailHeader bounty={bounty} />
-      <div className="flex flex-col md:flex-row w-full">
-        <div className="p-4 bg-white rounded-lg shadow-md md:ml-20 ml-4 mr-4 md:w-2/3 md:min-w-2/3 mt-10 h-96 rounded border-2 border-gray-100">
-          <div>{parse(String(bounty.description))}</div>
+      <div className="flex flex-col md:flex-row w-full mt-64">
+        <div className="p-4 bg-white rounded-lg shadow-md md:ml-20 ml-4 mr-4 md:w-2/3 md:min-w-2/3 mt-10 mb-10 h-full rounded border-2 border-gray-100">
+          <div className='h-full'>{parse(String(bounty.description))}</div>
         </div>
         <div className="flex flex-col ml-4 mt-10 md:w-1/3">
-          <div className="bg-white p-4 ml-1 md:ml-2   w-[25rem] h-fit rounded-lg border-2 border-gray-100">
-            <div className="flex flex-row space-x-32 "> 
+          <div className="bg-white p-4 ml-1 md:ml-2 w-[25rem] h-fit rounded-lg border-2 border-gray-100">
+            <div className="flex flex-row space-x-32">
               <div className="flex flex-row">
                 <Image src={suit} alt="suit" width={25} height={25} />
                 <h1 className="text-xl ml-2">{bounty.submissions}</h1>
               </div>
-              <div className="flex flex-row ">
+              <div className="flex flex-row">
                 <Image src={timer} alt="timer" width={25} height={25} />
                 <h1 className="text-xl ml-2">{formatDeadline(bounty.deadline)}</h1>
               </div>
             </div>
-            <div className="flex flex-row space-x-32"> 
+            <div className="flex flex-row space-x-32">
               <div className="flex flex-row">
-                <h1 className="text-xl  mt-2 text-gray-400 ">Submissions</h1>
+                <h1 className="text-xl mt-2 text-gray-400">Submissions</h1>
               </div>
-              <div className="flex flex-row ">
+              <div className="flex flex-row">
                 <h1 className="text-xl mt-2 text-gray-400">Remaining</h1>
               </div>
             </div>
-            <div className="flex flex-row justify-center">
-              <button className="bg-blue-500 hover:bg-blue-700 text-white  py-2 px-4 rounded mt-4 w-80" onClick={handleOpenModal}>
+            <div className="flex justify-center">
+              <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded mt-4 w-full md:w-auto" onClick={handleOpenModal}>
                 Submit Now
               </button>
             </div>
@@ -96,6 +96,10 @@ const Detail = () => {
           </div>
         </div>
       </div>
+      <Modal isOpen={isModalOpen} bounty={id} onClose={handleCloseModal}>
+        <h1>Modal Content</h1>
+        <button onClick={handleCloseModal}>Close Modal</button>
+      </Modal>
     </div>
   );
 };

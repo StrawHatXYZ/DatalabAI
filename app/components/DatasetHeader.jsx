@@ -17,7 +17,7 @@ const DatasetHeader = ({ datasetName }) => {
     }, []);
 
     return (
-        <div className={`flex flex-col items-center justify-center md:flex-row md:items-center md:justify-between border-2 mt-${isMobile ? 3 : 0} border-white bg-white`}>
+        <div className={`flex flex-col items-center justify-center md:flex-row  md:items-center md:justify-between border-2 mt-${isMobile ? 3 : 10} border-white bg-white fixed top-0 left-0 right-0 z-10`}>
             <div className={`card-container rounded mt-10 mb-5 ${isMobile ? '' : 'ml-24'}`}>
                 <div className="flex flex-col md:flex-row items-center justify-between p-4 card-content transition duration-300 ease-in-out transform hover:translate-y-1">
                     <div className="flex flex-col">

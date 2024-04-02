@@ -92,11 +92,15 @@ const Home = () => {
           {displayedBounties.map(bounty => (
             <Card key={bounty.id} bounty={bounty} />
           ))}
+          {bounties.length > 0 ? (
           <Link href="/Bounties">
            <p className="text-gray-600 cursor-pointer mt-4 mb-2 underline hover:no-underline hover:text-blue-500">
   Browse for more
 </p>
 </Link>
+          ) : (
+            <p className="text-gray-600 mt-4 mb-2">No bounties available</p>
+          )}
         </div>
        
       </div>

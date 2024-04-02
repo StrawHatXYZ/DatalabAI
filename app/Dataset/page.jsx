@@ -31,9 +31,10 @@ const Dataset = () => {
                 setData(response.data);
 
                 if (response.data) {
-                    const columnNames = Object.keys(response.data['features']);
-                    setColumns(columnNames);
+                    console.log("rows:", response.data['demo']);
+                    const columnNames = Object.keys(response.data['demo'][0]);
                     console.log("Columns:", columnNames);
+                    setColumns(columnNames);
                     setRows(response.data['demo']);
                     console.log("Rows:", rows);
                     console.log(response.data['config']['dataset_size']);
@@ -56,9 +57,9 @@ const Dataset = () => {
     }, [id]);
 
     return (
-        <div className="bg-gray-200 min-h-screen flex flex-col">
+        <div className="bg-gray-200 min-h-screen  flex flex-col">
             <DatasetHeader datasetName={id} />
-            <div className="container mx-auto mt-8">
+            <div className="container mx-auto mt-64">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}

@@ -12,7 +12,7 @@ const Navbar = () => {
   const [loading, setLoading] = useState(true);
   const [showDropdown, setShowDropdown] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for mobile menu
-  const isAdmin = user && user.email === "challapallisaikrishnakishore@gmail.com"; // Check if user is admin
+  const isAdmin = user && user.email === "obulpathi@gmail.com"; // Check if user is admin
   const router = useRouter();
 
   const formatDisplayName = (displayName) => {

@@ -24,7 +24,7 @@ const Bounties = () => {
   }, []);
 
   return (
-    <div className="container mx-auto px-4 mt-20">
+    <div className="container mx-auto px-4 mt-32">
       <div className='flex flex-row items-center justify-between'>
       <div className="flex items-center mb-4">
         <img src="https://cdn-icons-png.flaticon.com/512/6854/6854611.png" alt="bounties" width={35} height={35} />

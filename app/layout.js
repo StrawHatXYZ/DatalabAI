@@ -29,28 +29,23 @@ const RootLayout = ({ children }) => {
     return () => unsubscribe(); // Cleanup function
   }, []);
 
-  useEffect(() => {
-    // Redirect to home if the user is not logged in
-    if (!currentUser && pathname === '/AdminDashboard') {
-       redirect('/');
-    }
-    // Redirect to home if the user is not an admin
-    if (currentUser && currentUser.email !== "obulpathi@gmail.com" && pathname === '/AdminDashboard') {
-      redirect('/');
-    }
-  }, [pathname, currentUser]);
+  // useEffect(() => {
+  //   // Redirect to home if the user is not logged in
+  //   // if (!currentUser && pathname === '/AdminDashboard') {
+  //   //    redirect('/');
+  //   // }
+  //   // Redirect to home if the user is not an admin
+  //   // if (currentUser && currentUser.email !== "obulpathi@gmail.com" && pathname === '/AdminDashboard') {
+  //   //   redirect('/');
+  //   // }
+  // }, [pathname, currentUser]);
 
   return (
     <html lang="en">
       <body>
         <AuthContextProvider>
           <Navbar />
-          {/* Render AdminDashboard or Home based on the route */}
-          {pathname === '/AdminDashboard'|| '/' && currentUser && currentUser.email === "obulpathi@gmail.com" || "saikishore.chsk@gmail.com" ? (
-            <AdminDashboard />
-          ) : (
-            children
-          )}
+          {children}  
           <ToastContainer />
         </AuthContextProvider>
       </body>

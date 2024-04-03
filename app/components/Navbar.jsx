@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import { UserAuth } from "../context/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes, faUser, faCog, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
@@ -11,8 +11,8 @@ const Navbar = () => {
   const { user, googleSignIn, logOut } = UserAuth();
   const [loading, setLoading] = useState(true);
   const [showDropdown, setShowDropdown] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for mobile menu
-  const isAdmin = user && user.email === "obulpathi@gmail.com"; // Check if user is admin
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const isAdmin = user && (user.email === "obulpathi@gmail.com" || user.email === "saikishore.chsk@gmail.com" || user.email === "jagutatarao28@gmail.com");
   const router = useRouter();
 
   const formatDisplayName = (displayName) => {
@@ -76,10 +76,12 @@ const Navbar = () => {
 
   useEffect(() => {
     if (isAdmin) {
-      router.push("/AdminDashboard"); // Redirect to AdminDashboard if admin
+      router.push("/AdminDashboard");
+      return;
     }
   }, [isAdmin]);
 
+  
   return (
     <div className="fixed top-0 w-full bg-white shadow-lg z-40">
       <div className="container mx-auto flex justify-between items-center py-4">
@@ -112,6 +114,7 @@ const Navbar = () => {
             <>
               <li><Link href="/Datasets">Datasets</Link></li>
               <li><Link href="/Bounties">Bounties</Link></li>
+              {isAdmin && <li><Link href="/AdminDashboard">Admin</Link></li>}
               <li className="cursor-pointer relative" onClick={toggleDropdown}>
                 <span className="flex items-center space-x-2">
                   <span>{formatDisplayName(user.displayName)}</span>

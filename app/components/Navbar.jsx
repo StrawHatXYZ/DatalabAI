@@ -13,7 +13,7 @@ const Navbar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [isAdminRedirected, setIsAdminRedirected] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const isAdmin = user && (user.email === "obulpathi@gmail.com" || user.email === "saikishore.chsk@gmail.com" || user.email === "jagutatarao28@gmail.com");
+  const isAdmin = user && (user.email === "obulpathi@gmail.com" || user.email === "saikishore.chsk@gmail.com" || user.email === "hello@strawhat.xyz");
   const router = useRouter();
 
   const formatDisplayName = (displayName) => {
@@ -75,12 +75,6 @@ const Navbar = () => {
     checkAuthentication();
   }, [user]);
 
-    if (isAdmin && !isAdminRedirected) {
-      router.replace("/AdminDashboard");
-      setIsAdminRedirected(true);
-      return;
-    }
-  
   return (
     <div className="fixed top-0 w-full bg-white shadow-lg z-40">
       <div className="container mx-auto flex justify-between items-center py-4">
@@ -113,7 +107,8 @@ const Navbar = () => {
             <>
               <li><Link href="/Datasets">Datasets</Link></li>
               <li><Link href="/Bounties">Bounties</Link></li>
-              {isAdmin && <li><Link href="/AdminDashboard">Admin</Link></li>}
+              {isAdmin
+               && <li><Link href="/AdminDashboard">Admin</Link></li>}
               <li className="cursor-pointer relative" onClick={toggleDropdown}>
                 <span className="flex items-center space-x-2">
                   <span>{formatDisplayName(user.displayName)}</span>

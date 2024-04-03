@@ -11,6 +11,7 @@ const Navbar = () => {
   const { user, googleSignIn, logOut } = UserAuth();
   const [loading, setLoading] = useState(true);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [isAdminRedirected, setIsAdminRedirected] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isAdmin = user && (user.email === "obulpathi@gmail.com" || user.email === "saikishore.chsk@gmail.com" || user.email === "jagutatarao28@gmail.com");
   const router = useRouter();
@@ -74,12 +75,11 @@ const Navbar = () => {
     checkAuthentication();
   }, [user]);
 
-  useEffect(() => {
-    if (isAdmin) {
-      router.push("/AdminDashboard", undefined, { shallow: true });
+    if (isAdmin && !isAdminRedirected) {
+      router.replace("/AdminDashboard");
+      setIsAdminRedirected(true);
+      return;
     }
-  }, [isAdmin]);
-
   
   return (
     <div className="fixed top-0 w-full bg-white shadow-lg z-40">

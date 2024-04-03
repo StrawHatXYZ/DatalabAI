@@ -76,8 +76,7 @@ const Navbar = () => {
 
   useEffect(() => {
     if (isAdmin) {
-      router.push("/AdminDashboard");
-      return;
+      router.push("/AdminDashboard", undefined, { shallow: true });
     }
   }, [isAdmin]);
 
